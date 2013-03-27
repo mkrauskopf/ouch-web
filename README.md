@@ -4,6 +4,9 @@ OUCH web
 Current version is a simple Yesod-based web application able to diplay basic information about molecules from an
 uploaded SMILES file using OUCH.
 
+
+OUCH web in action :) (application screenshot)
+----------------------------------------------
 ![OUCH web in action :)](https://github.com/mkrauskopf/ouch-web/raw/master/screenshot.png)
 
 
