@@ -1,0 +1,12 @@
+body {
+  padding: 10px;
+}
+
+table {
+  border: 2px solid green;
+  margin: 10px 0px 10px 0px;
+}
+
+td, th {
+  padding: 0px 2px 0 2px;
+}

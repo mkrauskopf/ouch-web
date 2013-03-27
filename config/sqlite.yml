@@ -1,0 +1,20 @@
+Default: &defaults
+  database: ouch-web.sqlite3
+  poolsize: 10
+
+Development:
+  <<: *defaults
+
+Testing:
+  database: ouch-web_test.sqlite3
+  <<: *defaults
+
+Staging:
+  database: ouch-web_staging.sqlite3
+  poolsize: 100
+  <<: *defaults
+
+Production:
+  database: ouch-web_production.sqlite3
+  poolsize: 100
+  <<: *defaults

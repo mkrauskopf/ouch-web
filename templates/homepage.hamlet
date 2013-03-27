@@ -1,0 +1,5 @@
+<p>Simple application for diplaying information about molecules from an uploaded 
+   <a href="http://en.wikipedia.org/wiki/Simplified_molecular-input_line-entry_system">SMILES</a>
+   file.
+<a href=@{MoleculeR}>Go to molecules listing
+

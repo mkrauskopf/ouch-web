@@ -1,0 +1,23 @@
+<h1>Listing Molecules
+
+$maybe molecules' <- molecules
+  <table border="1">
+    <tr>
+      <th>Formula
+      <th>Weight
+      <th>Atom Count
+      <th>SMILES
+    $forall molecule <- molecules'
+      <tr>
+        <td>#{showMolForm molecule}
+        <td>#{showMolWeight molecule}
+        <td>#{showAtomCount molecule}
+        <td>#{writeSmiles molecule}
+
+<hr>
+
+<div #form>
+  <form method=post action=@{MoleculeR}#form enctype=#{formEnctype}>
+    ^{formWidget}
+    <input type="submit" value="Send it!">
+
