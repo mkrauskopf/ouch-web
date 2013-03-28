@@ -2,7 +2,7 @@ OUCH web
 ========
 
 Current version is a simple [Yesod]-based web application able to diplay basic information about molecules from
-an uploaded [SMILES] file using [OUCH]. [OUCH1]
+an uploaded [SMILES] file using [OUCH].
 
 
 OUCH web in action :) (application screenshot)
