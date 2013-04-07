@@ -1,8 +1,19 @@
-body {
-  padding: 10px;
+* {
+  margin: 0;
+  padding:0;
 }
 
+
+html, body {
+  height: 100%;
+}
+
+/*body {*/
+  /*padding: 10px;*/
+/*}*/
+
 table {
+  padding: 10px;
   border: 2px solid green;
   margin: 10px 0px 10px 0px;
 }
@@ -10,3 +21,38 @@ table {
 td, th {
   padding: 0px 2px 0 2px;
 }
+
+/* ------ START of sticky footer ------ */
+/*  Sticky Footer Solution: http://www.cssstickyfooter.com */
+
+/* must declare 0 margins on everything, also for main layout components use padding, not
+vertical margins (top and bottom) to add spacing, else those margins get added to total height
+and your footer gets pushed down a bit more, creating vertical scroll bars in the browser */
+#wrap {
+  min-height: 100%;
+}
+
+#main {
+  overflow:auto;
+  padding: 10px;
+  padding-bottom: 45px;
+}  /* must be same height as the footer */
+
+#footer {
+  position: relative;
+  padding-left: 10px;
+  margin-top: -45px; /* negative value of footer height */
+  height: 45px;
+  clear:both;
+}
+
+/* Opera Fix */
+body:before { /* thanks to Maleika (Kohoutec)*/
+  content: "";
+  height: 100%;
+  float: left;
+  width: 0;
+  margin-top: -32767px; /* thank you Erik J - negate effect of float*/
+}
+/* ------ END of sticky footer ------ */
+

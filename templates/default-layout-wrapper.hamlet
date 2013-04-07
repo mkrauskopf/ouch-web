@@ -20,16 +20,23 @@ $newline never
         \<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
         \<![endif]-->
 
+        $# neeeded for Sticky footer (see default-layout.lucius template)
+        <!--[if !IE 7]>
+          <style type="text/css">
+            #wrap {display:table;height:100%}
+          </style>
+        <![endif]-->
+
         <script>
           document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/,'js');
     <body>
-        <div class="container">
+        <div id="wrap">
             <header>
             <div id="main" role="main">
               ^{pageBody pc}
-            <footer>
-                <hr>
-                #{extraCopyright $ appExtra $ settings master}
+        <div id="footer">
+            <br>
+            #{extraCopyright $ appExtra $ settings master}
 
         $maybe analytics <- extraAnalytics $ appExtra $ settings master
             <script>
