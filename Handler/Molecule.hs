@@ -20,26 +20,27 @@ import Text.Printf(printf)
 getMoleculeR :: Handler RepHtml
 getMoleculeR = do
     (formWidget, formEnctype) <- generateFormPost importForm
-    let molecules = Nothing :: Maybe [Molecule]
+    let moleculesAndFilename = Nothing :: Maybe ([Molecule], Text)
     defaultLayout $ do
         $(widgetFile "molecule")
 
 postMoleculeR :: Handler RepHtml
 postMoleculeR = do
     ((result, formWidget), formEnctype) <- runFormPost importForm
-    molecules <- processFile result
+    moleculesAndFilename <- processFile result
     defaultLayout $ do
         $(widgetFile "molecule")
 
 importForm :: Form FileInfo
 importForm = renderDivs $ fileAFormReq "Choose a SMILES file:"
 
-processFile :: FormResult FileInfo -> Handler (Maybe [Molecule])
+processFile :: FormResult FileInfo -> Handler (Maybe ([Molecule], Text))
 processFile formRes =
     case formRes of
       FormSuccess fi -> do
-        t <- lift $ toMolecules <$> (fileSource fi $$ consume)
-        return . Just $ t
+        molecules <- lift $ toMolecules <$> (fileSource fi $$ consume)
+        let fName = fileName fi
+        return . Just $ (molecules, fName)
       _ -> return Nothing
   where
     smiles :: [B.ByteString] -> [Text]

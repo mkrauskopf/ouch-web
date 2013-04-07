@@ -1,20 +1,19 @@
-<h1>Listing Molecules
-
-$maybe molecules' <- molecules
+$maybe (molecules, fName) <- moleculesAndFilename
+  <h1>Listing Molecules
+  (from uploaded <em>#{fName}</em> file)
   <table border="1">
     <tr>
       <th>Formula
       <th>Weight
       <th>Atom Count
       <th>SMILES
-    $forall molecule <- molecules'
+    $forall mol <- molecules
       <tr>
-        <td>#{showMolForm molecule}
-        <td>#{showMolWeight molecule}
-        <td>#{showAtomCount molecule}
-        <td>#{writeSmiles molecule}
-
-<hr>
+        <td>#{showMolForm mol}
+        <td>#{showMolWeight mol}
+        <td>#{showAtomCount mol}
+        <td>#{writeSmiles mol}
+  <hr>
 
 <div #form>
   <form method=post action=@{MoleculeR} enctype=#{formEnctype}>
