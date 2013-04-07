@@ -1,6 +1,9 @@
 $maybe (molecules, fName) <- moleculesAndFilename
   <h1>Listing Molecules
-  (from uploaded <em>#{fName}</em> file)
+  $if "" == fName
+    (sample set of compounds)
+  $else
+    (from uploaded <em>#{fName}</em> file)
   <table border="1">
     <tr>
       <th>Formula
@@ -16,7 +19,8 @@ $maybe (molecules, fName) <- moleculesAndFilename
   <hr>
 
 <div #form>
-  <form method=post action=@{MoleculeR} enctype=#{formEnctype}>
+  <form method=post action=@{MoleculeR "upload"} enctype=#{formEnctype}>
+  <form method=post enctype=#{formEnctype}>
     ^{formWidget}
     <input type="submit" value="Send it!">
 

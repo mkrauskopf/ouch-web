@@ -5,4 +5,5 @@
 /robots.txt RobotsR GET
 
 / HomeR GET POST
-/molecule MoleculeR GET POST
+/molecule/#String MoleculeR GET POST
+

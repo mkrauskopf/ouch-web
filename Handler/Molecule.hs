@@ -17,15 +17,19 @@ import qualified Data.Text as T
 import qualified Ouch.Property.Builder as OPB
 import Text.Printf(printf)
 
-getMoleculeR :: Handler RepHtml
-getMoleculeR = do
+getMoleculeR :: String -> Handler RepHtml
+getMoleculeR cmd = do
+    let moleculesAndFilename =
+          case cmd of
+            "sample" -> Just (sampleMolecules, "")
+            "upload" -> Nothing :: Maybe ([Molecule], Text)
+            _        -> Nothing :: Maybe ([Molecule], Text)
     (formWidget, formEnctype) <- generateFormPost importForm
-    let moleculesAndFilename = Nothing :: Maybe ([Molecule], Text)
     defaultLayout $ do
         $(widgetFile "molecule")
 
-postMoleculeR :: Handler RepHtml
-postMoleculeR = do
+postMoleculeR :: String -> Handler RepHtml
+postMoleculeR cmd = do
     ((result, formWidget), formEnctype) <- runFormPost importForm
     moleculesAndFilename <- processFile result
     defaultLayout $ do
@@ -43,9 +47,11 @@ processFile formRes =
         return . Just $ (molecules, fName)
       _ -> return Nothing
   where
-    smiles :: [B.ByteString] -> [Text]
-    smiles = T.lines . decodeUtf8 . B.concat
+    toMolecules :: [B.ByteString] -> [Molecule]
     toMolecules = map (readSmi . T.unpack) . smiles
+      where
+        smiles :: [B.ByteString] -> [Text]
+        smiles = T.lines . decodeUtf8 . B.concat
 
 showMolForm :: Molecule -> String
 showMolForm = showProperty molecularFormula
@@ -64,4 +70,19 @@ getPropertyValue prop m = case OPB.value prop of
 
 showProperty :: OPB.Property -> Molecule -> String
 showProperty p m = show $ getPropertyValue p m
+
+-- Sample set of compounds
+sampleMolecules :: [Molecule]
+sampleMolecules = map readSmi
+    [ "[H]C([H])([H])[H]"
+    , "[H]N([H])[H]"
+    , "[H]O[H]"
+    , "[H][N+]([H])([H])[H]"
+    , "F[H]"
+    , "C=C"
+    , "CC"
+    , "OO"
+    , "[OH-].[Na+]"
+    , "O=C=O"
+    ]
 
