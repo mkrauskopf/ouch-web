@@ -72,7 +72,7 @@ library
                  , conduit                       >= 1.0
                  , monad-logger                  >= 0.3
                  , fast-logger                   >= 0.3
-                 , Ouch
+                 , ouch
 
 executable         ouch-web
     if flag(library-only)
