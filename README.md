@@ -14,9 +14,9 @@ Installation
 ------------
 In short using _cabal-dev_:
 
-```sh
+```console
 git clone git://github.com/odj/Ouch.git /local/path/to/Ouch
-cabal-dev add-source /space/haskell/sources/Ouch
+cabal-dev add-source /local/path/to/Ouch
 cabal-dev install
 ```
 
