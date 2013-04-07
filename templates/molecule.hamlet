@@ -17,7 +17,7 @@ $maybe molecules' <- molecules
 <hr>
 
 <div #form>
-  <form method=post action=@{MoleculeR}#form enctype=#{formEnctype}>
+  <form method=post action=@{MoleculeR} enctype=#{formEnctype}>
     ^{formWidget}
     <input type="submit" value="Send it!">
 
